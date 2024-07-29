@@ -3,7 +3,9 @@ input = sys.stdin.readline
 
 l, n, k = map(int, input().split())
 arr = list(map(int, input().split()))
-
+if n >= k:
+    print('0\n' * k)
+    exit()
 visit = []
 res = ''
 distance = 0
@@ -14,14 +16,14 @@ while flag:
             visit.append(now + distance)
             res += str(distance) + '\n'
             k -= 1
-            if not k:
+            if k == 0:
                 flag = False
                 break
         if now - distance >= 0 and (now - distance) not in visit:
             visit.append(now - distance)
             res += str(distance) + '\n'
             k -= 1
-            if not k:
+            if k == 0:
                 flag = False
                 break
 
