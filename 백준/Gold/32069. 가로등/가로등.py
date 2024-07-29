@@ -6,24 +6,23 @@ arr = list(map(int, input().split()))
 
 visit = []
 res = ''
-total = 0
 distance = 0
-flag=True
+flag = True
 while flag:
     for now in arr:
         if now + distance <= l and (now + distance) not in visit:
             visit.append(now + distance)
             res += str(distance) + '\n'
-            total += 1
-            if total == k:
-                flag=False
+            k -= 1
+            if not k:
+                flag = False
                 break
         if now - distance >= 0 and (now - distance) not in visit:
             visit.append(now - distance)
             res += str(distance) + '\n'
-            total += 1
-            if total == k:
-                flag=False
+            k -= 1
+            if not k:
+                flag = False
                 break
 
     distance += 1
