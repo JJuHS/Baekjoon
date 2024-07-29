@@ -1,0 +1,5 @@
+a, b, c = int(input()), int(input()), int(input())
+if a + b + c != 180:print('Error');exit()
+if a == 60 and b == 60:print('Equilateral');exit()
+if a == b or a == c or b == c:print('Isosceles');exit()
+print('Scalene')
