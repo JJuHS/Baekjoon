@@ -1,28 +1,30 @@
-import sys;input = sys.stdin.readline
+import sys
+input = sys.stdin.readline
 
-l, n, k = map(int, input().split()) # 도로 길이, 가로등 개수, 출력개수
-arr = list(map(int, input().split())) # 가로등 배열
+l, n, k = map(int, input().split())
+arr = list(map(int, input().split()))
 
 visit = []
 res = ''
 total = 0
-idx = 0
-while True:
-    for i in arr:
-        if i + idx <= l and (i + idx) not in visit:
-            visit.append(i + idx)
-            res += str(idx) + '\n'
+distance = 0
+flag=True
+while flag:
+    for now in arr:
+        if now + distance <= l and (now + distance) not in visit:
+            visit.append(now + distance)
+            res += str(distance) + '\n'
             total += 1
-        if total == k:
-            break
-        if i - idx >= 0 and (i - idx) not in visit:
-            visit.append(i - idx)
-            res += str(idx) + '\n'
+            if total == k:
+                flag=False
+                break
+        if now - distance >= 0 and (now - distance) not in visit:
+            visit.append(now - distance)
+            res += str(distance) + '\n'
             total += 1
-        if total == k:
-            break
-    if total == k:
-        break
-    idx += 1
-    
+            if total == k:
+                flag=False
+                break
+
+    distance += 1
 print(res)
