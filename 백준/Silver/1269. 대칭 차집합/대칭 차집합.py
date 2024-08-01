@@ -1,0 +1,1 @@
+print(sum(map(int,input().split()))-2*len(set(map(int,input().split()))&(set(map(int,input().split())))))
