@@ -1,11 +1,5 @@
-import sys
-input = sys.stdin.readline
-# sys.stdin = open("C:/Users/ghtjd/Desktop/tmp/python/input.txt", "r")
-
-def sol(n: str):
+def sol(n: int):
     res = [0] * 10  
-    n = int(n)
-
     factor = 1 
 
     while n >= factor:
@@ -27,4 +21,4 @@ def sol(n: str):
 
     print(*res)
 
-sol(input())
+sol(int(input()))
