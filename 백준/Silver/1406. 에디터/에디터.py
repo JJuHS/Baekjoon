@@ -40,18 +40,17 @@ class LinkedList():
 
     def insert_left(self, data):
         new_node = Node(data)
-        if self.cursor.data != 'start':
-            prev = self.cursor.left
-            new_node.left = prev
-            new_node.right = self.cursor
-            prev.right = new_node
-            self.cursor.left = new_node
-        else:
-            new_node.left = self.start_node
-            new_node.right = self.cursor
-            self.start_node.right = new_node
-            self.cursor.left = new_node
+        new_node.right = self.cursor
+
+        if self.cursor == self.start_node:
+            prev = self.start_node
             self.head = new_node
+        else:
+            prev = self.cursor.left
+
+        new_node.left = prev
+        prev.right = new_node
+        self.cursor.left = new_node
         
     def delete_left(self):
         if self.cursor.left != self.start_node:
@@ -79,21 +78,23 @@ class LinkedList():
             now = now.right
         print(''.join(res))
     
-char = input().strip()
-arr = LinkedList()
-arr.initial_append(char[0])
-for i in range(1, len(char)):
-    arr.append(char[i])
+if __name__ == '__main__':
+    char = input().strip()
 
-for _ in range(int(input())):
-    c = input().split()
-    if c[0] == 'L':
-        arr.move_cursor_left()
-    elif c[0] == 'D':
-        arr.move_cursor_right()
-    elif c[0] == 'B':
-        arr.delete_left()
-    else:
-        arr.insert_left(c[1])
+    arr = LinkedList()
+    arr.initial_append(char[0])
+    for i in range(1, len(char)):
+        arr.append(char[i])
 
-arr.print()
+    for _ in range(int(input())):
+        c = input().split()
+        if c[0] == 'L':
+            arr.move_cursor_left()
+        elif c[0] == 'D':
+            arr.move_cursor_right()
+        elif c[0] == 'B':
+            arr.delete_left()
+        else:
+            arr.insert_left(c[1])
+
+    arr.print()
