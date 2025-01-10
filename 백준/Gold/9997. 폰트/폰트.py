@@ -14,9 +14,10 @@ goal = (1 << 26) - 1
 
 def sol(now_bit=0, idx=0):
     global res
+    if now_bit == goal: 
+        res += 2 ** (n - idx)
+        return
     if idx >= n:
-        if now_bit == goal: 
-            res += 1
         return
     
     sol(now_bit, idx + 1)
@@ -24,3 +25,5 @@ def sol(now_bit=0, idx=0):
 
 sol()
 print(res)
+
+
