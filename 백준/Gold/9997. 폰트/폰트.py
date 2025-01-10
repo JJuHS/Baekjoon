@@ -11,19 +11,19 @@ for i in range(n):
 
 res = 0
 goal = (1 << 26) - 1
+dp = {}
 
 def sol(now_bit=0, idx=0):
-    global res
+    key = (now_bit, idx)
+    if key in dp:
+        return dp[key]
     if now_bit == goal: 
-        res += 2 ** (n - idx)
-        return
+        return 2 ** (n - idx)
     if idx >= n:
-        return
+        return 0
     
-    sol(now_bit, idx + 1)
-    sol(now_bit | arr_bit[idx], idx + 1)
+    res = sol(now_bit, idx + 1) + sol(now_bit | arr_bit[idx], idx + 1)
+    dp[key] = res
+    return res
 
-sol()
-print(res)
-
-
+print(sol())
